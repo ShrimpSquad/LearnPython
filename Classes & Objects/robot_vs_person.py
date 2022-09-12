@@ -8,8 +8,11 @@
 # Give the person three attributes, height, weight, IQ
 # Give the person one method - the ability flex on the robot.
 
+# Compare the IQ of robot and person using the robot's function.
+# At the end of this same function, make the robot taunt the person for having a lower IQ
 
-# Create robot1
+# Respond using person's function to flex_on_haters and talk shit back
+
 
 class Robot:
     def __init__(self, height, weight, IQ) -> None:
