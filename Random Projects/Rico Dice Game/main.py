@@ -2,13 +2,13 @@ import random
 
 class Die:
 
-    def _init_(self):
+    def __init__(self):
         self.roll = [1, 2, 3, 4, 5, 6]
 
 
 class Player:
 
-    def _init_(self, name, die):
+    def __init__(self,name,die):
         self.name = name
         self.lives = 10
         self.die = die
@@ -16,7 +16,7 @@ class Player:
 
 class Brain:
 
-    def _init_(self, player1, player2):
+    def __init__(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
 
@@ -43,7 +43,7 @@ class Brain:
 die = Die()
 die2 = Die()
 player1 = Player("Rico", die)
-player2 = Player("Computer", die)
+player2 = Player("Computer", die2)
 brain = Brain(player1, player2)
 
 
