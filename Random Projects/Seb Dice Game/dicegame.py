@@ -35,12 +35,12 @@ class DiceGame:
         # Outcome of roll comparison
         if human_roll < computer_roll:
             self.human.counter -= 1
-            self.computer.counter += 1
+            #self.computer.counter += 1
             print(f"{self.computer.name} rolled higher!")
             self.check_winner(human_roll,computer_roll)
 
         elif human_roll > computer_roll:
-            self.human.counter += 1
+            #self.human.counter += 1
             self.computer.counter -= 1
             print(f"{self.human.name} rolled higher!")
             self.check_winner(human_roll,computer_roll)
@@ -51,10 +51,10 @@ class DiceGame:
     # At the end of each round, check if a winner has been decided
     def check_winner(self, *args):
         if self.human.counter == 0:
-            print(f"{self.human.name} wins!")
+            print(f"{self.human.name} wins the game!")
             return True
         elif self.computer.counter == 0:
-            print(f"{self.computer.name} wins!")
+            print(f"{self.computer.name} wins the game!")
             return True
         else:
             pass
