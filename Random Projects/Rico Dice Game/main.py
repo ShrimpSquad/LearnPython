@@ -47,17 +47,19 @@ while True:
         p1_die, p2_die = Die(), Die()
         p1, p2 = Player(input("What is your name: "), p1_die), Player("Computer", p1_die)
         brain = Brain(p1, p2)
-        input("Press something to start: ")
+        input("Press enter to start: ")
         print(f"=====GAME BEGINS ROUND {round}=====")
 
         brain.roll()
         brain.view_lives()
         round += 1
-        next_round = input("Press anything for next round OR r to restart: ")
+        next_round = input("Press enter for next round / r to restart / q to quit: ")
         if next_round == "r":
             print("gameover")
             round = 1
             break
+        elif next_round == "q":
+            exit()
 
         while True:
             print(f"------------ROUND {round}------------")
@@ -80,8 +82,10 @@ while True:
             else:
                 pass
 
-            next_round = input("Press anything for next round OR r to restart: ")
+            next_round = input("Press enter for next round / r to restart / q to quit: ")
             if next_round == "r":
                 print("Gameover")
                 round = 1
                 break
+            elif next_round =="q":
+                exit()
