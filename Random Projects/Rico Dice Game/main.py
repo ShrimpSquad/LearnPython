@@ -75,7 +75,7 @@ while True:
                 break
             elif p2.lives == 0:
                 winner = p1.lives - p2.lives
-                print(f"Game over! {p2.name} Win by {winner} lives")
+                print(f"Game over! {p1.name} Win by {winner} lives")
                 input("Press anything to restart")
                 round = 1
                 break
