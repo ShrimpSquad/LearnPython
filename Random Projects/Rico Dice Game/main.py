@@ -3,12 +3,12 @@ import random
 class Die:
 
     def __init__(self):
-        self.roll = [1, 2, 3, 4, 5, 6]
+        self.sides = [1, 2, 3, 4, 5, 6]
 
 
 class Player:
 
-    def __init__(self,name,die):
+    def __init__(self, name, die):
         self.name = name
         self.lives = 10
         self.die = die
@@ -16,56 +16,66 @@ class Player:
 
 class Brain:
 
-    def __init__(self, player1, player2):
-        self.player1 = player1
-        self.player2 = player2
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
 
-    def start(self):
+    def roll(self):
+
+        p1_roll  = random.choice(p1.die.sides)
+        p2_roll = random.choice(p2.die.sides)
+
+        if p1_roll == p2_roll:
+            print(f"{p1.name} rolls: {p1_roll}\n{p2.name} rolls: {p2_roll}")
+            print("!!! It's a tie !!!")
+        elif p1_roll > p2_roll:
+            print(f"{p1.name} rolls: {p1_roll}\n{p2.name} rolls: {p2_roll}")
+            p2.lives -= 1
+            print("!!! Player 1 rolls higher !!!")
+        elif p1_roll < p2_roll:
+            print(f"{p1.name} rolls: {p1_roll}\n{p2.name} rolls: {p2_roll}")
+            p1.lives -= 1
+            print("!!! Player 2 roll highers !!!")
+    
+    def view_lives(self):
+        print(f"{p1.name} lives left: {p1.lives}\n{p2.name} lives left: {p2.lives}")
+
+while True:
+    while True:
+
         print("===============================\nWelcome to Roll Dice game thing\n===============================")
+        p1_die, p2_die = Die(), Die()
+        p1, p2 = Player(input("What is your name: "), p1_die), Player("Computer", p1_die)
+        brain = Brain(p1, p2)
+        input("Any letter to start: ")
+        print("==========GAME BEGINS==========")
 
-    def round(self):
-        print("------New Round------")
+        brain.roll()
+        brain.view_lives()
+        next_round = input("Any letter for next round / r to restart: ")
+        if next_round == "r":
+            print("gameover")
+            break
 
-    def gameplay(self):
-        
-        player1_roll = random.choice(player1.die.roll)
-        player2_roll = random.choice(player2.die.roll)
-        if player1_roll == player2_roll:
-            print("it's a tie")
-        elif player1_roll > player2_roll:
-            player2.lives -= 1
-            print("Player 1 Wins")
-        elif player1_roll < player2_roll:
-            player1.lives -= 1
-            print("Player 2 Wins")
+        while True:
+            print("------------New Round------------")
+            brain.roll()
+            brain.view_lives()
 
+            if p1.lives == 0:
+                winner = p2.lives - p1.lives
+                print(f"Game over! {p2.name} Win by {winner} lives")
+                input("Press a key to restart")
+                break
+            elif p2.lives == 0:
+                winner = p1.lives - p2.lives
+                print(f"Game over! {p2.name} Win by {winner} lives")
+                input("Press a key to restart")
+                break
+            else:
+                pass
 
-die = Die()
-die2 = Die()
-player1 = Player("Rico", die)
-player2 = Player("Computer", die2)
-brain = Brain(player1, player2)
-
-
-next_round = ""
-brain.start()
-still_on = True
-
-while still_on == True:
-
-    if next_round != "s":
-
-        brain.round()
-        next_round = input("Any key for next round or s to finsh: ")
-        brain.gameplay()
-        print(f"Player 1 lives: {brain.player1.lives}")
-        print(f"Player 2 lives: {brain.player2.lives}")
-
-        if brain.player1.lives == 0:
-            print("game over player 2 wins")
-            still_on = False
-        elif brain.player2.lives == 0:
-            print("game over player 2 wins")
-            still_on = False
-    else:
-        still_on = False
+            next_round = input("Any letter for next round / r to restart: ")
+            if next_round == "r":
+                print("Gameover")
+                break
