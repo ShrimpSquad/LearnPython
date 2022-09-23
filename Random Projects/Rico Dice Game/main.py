@@ -41,41 +41,48 @@ class Brain:
         print(f"{p1.name} lives left: {p1.lives}\n{p2.name} lives left: {p2.lives}")
 
 while True:
+    round = 1
     while True:
 
         print("===============================\nWelcome to Roll Dice game thing\n===============================")
         p1_die, p2_die = Die(), Die()
         p1, p2 = Player(input("What is your name: "), p1_die), Player("Computer", p1_die)
         brain = Brain(p1, p2)
-        input("Any letter to start: ")
-        print("==========GAME BEGINS==========")
+        input("Press something to start: ")
+        print(f"=====GAME BEGINS ROUND {round}=====")
 
         brain.roll()
         brain.view_lives()
-        next_round = input("Any letter for next round / r to restart: ")
+        round += 1
+        next_round = input("Press anything for next round OR r to restart: ")
         if next_round == "r":
             print("gameover")
+            round = 1
             break
 
         while True:
-            print("------------New Round------------")
+            print(f"------------ROUND {round}------------")
             brain.roll()
             brain.view_lives()
+            round += 1
 
             if p1.lives == 0:
                 winner = p2.lives - p1.lives
                 print(f"Game over! {p2.name} Win by {winner} lives")
-                input("Press a key to restart")
+                input("Press anything to restart")
+                round = 1
                 break
             elif p2.lives == 0:
                 winner = p1.lives - p2.lives
                 print(f"Game over! {p2.name} Win by {winner} lives")
-                input("Press a key to restart")
+                input("Press anything to restart")
+                round = 1
                 break
             else:
                 pass
 
-            next_round = input("Any letter for next round / r to restart: ")
+            next_round = input("Press anything for next round OR r to restart: ")
             if next_round == "r":
                 print("Gameover")
+                round = 1
                 break
