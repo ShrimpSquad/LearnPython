@@ -22,8 +22,7 @@ class Brain:
 
     def roll(self):
 
-        p1_roll  = random.choice(p1.die.sides)
-        p2_roll = random.choice(p2.die.sides)
+        p1_roll, p2_roll  = random.choice(p1.die.sides), random.choice(p2.die.sides)
 
         if p1_roll == p2_roll:
             print(f"{p1.name} rolls: {p1_roll}\n{p2.name} rolls: {p2_roll}")
